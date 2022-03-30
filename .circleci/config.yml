@@ -11,6 +11,15 @@ jobs:
            command:
               docker build --tag=rab7a:${CIRCLE_BUILD_NUM} .
               docer images
+      - run:
+           name: push2dockerhub
+           command: |
+             dockerpath="amiramaher/rab7a:${CIRCLE_BUILD_NUM}"
+             docker tag rab7a:${CIRCLE_BUILD_NUM} $dockerpath
+             echo "Docker ID and IMG:$dockerpath"
+             echo "$DOCKER_PASS" | docker login --username $MY_DOCKER_VAR --password-stdin
+             docker image push $dockerpath
+   
 
 workflows:
   docker:
