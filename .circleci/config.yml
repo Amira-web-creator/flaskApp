@@ -14,10 +14,10 @@ jobs:
       - run:
            name: push2dockerhub
            command: |
-             dockerpath="Amira-web-creator/rab7a:${CIRCLE_BUILD_NUM}"
+             dockerpath="amiramaher/rab7a:${CIRCLE_BUILD_NUM}"
              docker tag rab7a:${CIRCLE_BUILD_NUM} $dockerpath
              echo "Docker ID and IMG:$dockerpath"
-             echo "$DOCKER_PASS" | docker login --username $MY_DOCKER_VAR --password-stdin
+             echo "$DOCKER_PASS" | docker login --username $DOCKER_USER --password-stdin
              docker image push $dockerpath
    
 
